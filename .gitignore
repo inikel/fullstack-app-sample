@@ -1,0 +1,6 @@
+node_modules
+interface/.next
+interface/node_modules
+
+server/dist
+server/node_modules

@@ -1,0 +1,13 @@
+mutation CreateUser($options: UsernamePasswordInput!) {
+  createUser(options: $options) {
+    user {
+      username
+      email
+      password
+    }
+    errors {
+      field
+      message
+    }
+  }
+}
