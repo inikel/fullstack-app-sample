@@ -1,8 +1,55 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
+import InputField from "../components/inputs/InputField/InputField";
+import React from "react";
+import Link from "next/link";
+import stylesRegister from "../styles/Register.module.css";
+import { useLoginUserMutation } from "../generated-graphql/graphql";
+import { useRouter } from "next/router";
+import { ROUTES } from "../routes";
 
+const REGISTER_INPUTS: Inputs = {
+  email: "email",
+  username: "username",
+  password: "password",
+};
+interface Inputs {
+  email: string;
+  username: string;
+  password: string;
+}
 export default function Login() {
+  const [serverErrorText, setServerErrorText] = React.useState<string>();
+  const [loginUser] = useLoginUserMutation();
+  const methods = useForm<Inputs>();
+  const router = useRouter();
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = methods;
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const { username, password, email } = data;
+
+    const response = await loginUser({
+      variables: {
+        options: {
+          username,
+          password,
+          email,
+        },
+      },
+    });
+
+    if (response.data?.loginUser.errors?.length) {
+      setServerErrorText(response.data?.loginUser.errors[0].message);
+    } else {
+      router.push(ROUTES.dashboard);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,10 +60,26 @@ export default function Login() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">sample</a>
+          Let&apos;s <a>log in</a>
         </h1>
-
-        <p className={styles.description}>Login here</p>
+        <FormProvider {...methods}>
+          <form
+            className={stylesRegister.form}
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <InputField name={REGISTER_INPUTS.username} />
+            <InputField name={REGISTER_INPUTS.password} />
+            <button className={stylesRegister.button} type="submit">
+              Go
+            </button>
+            {serverErrorText && (
+              <p style={{ color: "red" }}>{serverErrorText}</p>
+            )}
+            <Link href={ROUTES.main} className={styles.card}>
+              Main page
+            </Link>
+          </form>
+        </FormProvider>
       </main>
 
       <footer className={styles.footer}>

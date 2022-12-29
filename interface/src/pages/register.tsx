@@ -1,9 +1,12 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import InputField from "../components/inputs/InputField/InputField";
 import { useCreateUserMutation } from "../generated-graphql/graphql";
 import styles from "../styles/Register.module.css";
+import stylesHome from "../styles/Home.module.css";
+import { ROUTES } from "../routes";
 
 const REGISTER_INPUTS: Inputs = {
   email: "email",
@@ -50,7 +53,7 @@ const RegisterPage = () => {
   React.useEffect(() => {
     if (isUserCreated) {
       setTimeout(() => {
-        router.push("/");
+        router.push(ROUTES.main);
       }, 2000);
     }
   }, [isUserCreated]);
@@ -71,6 +74,9 @@ const RegisterPage = () => {
             {serverErrorText && (
               <p style={{ color: "red" }}>{serverErrorText}</p>
             )}
+            <Link href={ROUTES.main} className={stylesHome.card}>
+              Main page
+            </Link>
           </form>
         </>
       )}

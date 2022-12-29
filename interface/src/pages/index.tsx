@@ -1,10 +1,12 @@
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import {
   useDeleteUserMutation,
   useGetUsersQuery,
 } from "../generated-graphql/graphql";
+import { ROUTES } from "../routes";
 import styles from "../styles/Home.module.css";
 
 type $fixMe = any;
@@ -37,13 +39,18 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        <p className={styles.subtitle}>fullstack app </p>
         <h1 className={styles.title}>
           <a>Sample</a>
         </h1>
 
-        <p className={styles.subtitle}>fullstack app </p>
-
         <div className={styles.grid}>
+          <Link href={ROUTES.register} className={styles.card}>
+            Register
+          </Link>
+          <Link href={ROUTES.login} className={styles.card}>
+            Login
+          </Link>
           {/* {usersData?.users.map(user => {
             return <>
                 <div className={styles.card}>
