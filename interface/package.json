@@ -32,7 +32,8 @@
     "@graphql-codegen/typescript-operations": "1.17.7",
     "@graphql-codegen/typescript-react-apollo": "^2.0.6",
     "@graphql-codegen/typescript-urql": "^2.0.0",
-    "prettier": "2.8.1"
+    "prettier": "2.8.1",
+    "react-hook-form": "^7.41.2"
   },
   "scripts": {
     "dev": "next dev",

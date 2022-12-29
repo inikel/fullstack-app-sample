@@ -53,14 +53,14 @@ const RegisterPage = () => {
   React.useEffect(() => {
     if (isUserCreated) {
       setTimeout(() => {
-        router.push(ROUTES.main);
+        router.push(ROUTES.dashboard);
       }, 2000);
     }
   }, [isUserCreated]);
 
   return (
     <FormProvider {...methods}>
-      {isUserCreated && <p>You have been registered. Redirect to main page.</p>}
+      {isUserCreated && <p>You have been registered. Redirect to dashboard.</p>}
       {!isUserCreated && (
         <>
           <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
