@@ -1,6 +1,6 @@
-import { UsernamePasswordInput } from "src/graphql/resolvers/inputs/usernamePassword";
+import { UserRegisterInput } from "src/graphql/resolvers/inputs/userInputs";
 
-export const validateUserRegister = (options: UsernamePasswordInput) => {
+export const validateUserRegister = (options: UserRegisterInput) => {
   if (!options.email.includes("@")) {
     return [
       {

@@ -12,6 +12,6 @@ const orm = new DataSource({
   entities: [User],
   synchronize: true,
   logging: !__prod__,
-})
+});
 
-export default orm  
+export default orm;
