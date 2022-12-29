@@ -7,11 +7,11 @@ export const useAuth = () => {
   const router = useRouter();
   const { data: userData } = useGetCurrentUserQuery();
 
-  React.useEffect(() => {
-    if (!userData) {
-      router.push(ROUTES.main);
-    }
-  }, [userData]);
+  // React.useEffect(() => {
+  //   if (!userData) {
+  //     router.push(ROUTES.main);
+  //   }
+  // }, [userData]);
 
   return {
     userData,
