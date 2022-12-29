@@ -11,6 +11,7 @@
     "apollo-client": "^2.6.10",
     "apollo-server-express": "^3.11.1",
     "cors": "^2.8.5",
+    "dotenv-safe": "^8.2.0",
     "eslint": "^8.29.0",
     "eslint-config-next": "^13.0.6",
     "express": "^4.18.2",
@@ -30,7 +31,8 @@
     "@graphql-codegen/typescript": "1.17.7",
     "@graphql-codegen/typescript-operations": "1.17.7",
     "@graphql-codegen/typescript-react-apollo": "^2.0.6",
-    "@graphql-codegen/typescript-urql": "^2.0.0"
+    "@graphql-codegen/typescript-urql": "^2.0.0",
+    "prettier": "2.8.1"
   },
   "scripts": {
     "dev": "next dev",
@@ -39,6 +41,7 @@
     "lint": "next lint",
     "gen": "graphql-codegen --config .graphqlrc.yml",
     "graphql:coverage": "graphql coverage",
-    "graphql:validate": "graphql validate"
+    "graphql:validate": "graphql validate",
+    "unify": "prettier --write ./src"
   }
 }

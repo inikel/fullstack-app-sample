@@ -1,22 +1,32 @@
-import Head from 'next/head'
-import { useDeleteUserMutation, useGetUsersQuery } from '../generated-graphql/graphql'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import { useRouter } from "next/router";
+import React from "react";
+import {
+  useDeleteUserMutation,
+  useGetUsersQuery,
+} from "../generated-graphql/graphql";
+import styles from "../styles/Home.module.css";
 
-type $fixMe = any
+type $fixMe = any;
 
 export default function Home() {
-  const { data: usersData } = useGetUsersQuery()
-  const [deleteUser] = useDeleteUserMutation()
+  // const { data: usersData } = useGetUsersQuery()
+  // const [deleteUser] = useDeleteUserMutation()
+  // const router = useRouter()
 
-  const onDelete = (id: $fixMe) => {
+  // React.useEffect(() => {
+  //   router.push('/register')
+  // }, [])
 
-    deleteUser({
-      variables: { id },
-      update: (cache) => {
-        cache.evict({ id: "User:" + id });
-      },
-    })
-  }
+  // const onDelete = (id: $fixMe) => {
+
+  //   deleteUser({
+  //     variables: { id },
+  //     update: (cache) => {
+  //       cache.evict({ id: "User:" + id });
+  //     },
+  //   })
+  // }
 
   return (
     <div className={styles.container}>
@@ -31,12 +41,10 @@ export default function Home() {
           <a>Sample</a>
         </h1>
 
-        <p className={styles.subtitle}>
-          fullstack app{' '}
-        </p>
+        <p className={styles.subtitle}>fullstack app </p>
 
         <div className={styles.grid}>
-          {usersData?.users.map(user => {
+          {/* {usersData?.users.map(user => {
             return <>
                 <div className={styles.card}>
                   <h2>{user.username}</h2>
@@ -47,9 +55,9 @@ export default function Home() {
                   >Delete</p>
                 </div>
               </>
-          })}
+          })} */}
         </div>
       </main>
     </div>
-  )
+  );
 }
